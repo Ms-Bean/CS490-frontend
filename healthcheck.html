@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Main page</title>
+    </head>
+    <body>
+        <h1 id="helloworld"></h1>
+    </body>
+    <script>
+        let server_url = "http://localhost:3500/healthcheck"
+
+        async function fetch_string(server_url)
+        {
+            let response = await fetch(server_url,{
+                method: "GET",
+                mode: "cors"
+            }).catch(error=>{
+                document.getElementById("helloworld").innerHTML = "an error has occured";
+            });
+            let data = await response.text().catch(error =>{
+                document.getElementById("helloworld").innerHTML = "an error has occured";
+            });
+            fetched_string = JSON.parse(data).value;
+            document.getElementById("helloworld").innerHTML = fetched_string;
+        }
+
+        fetch_string(server_url);
+    </script>
+</html>
