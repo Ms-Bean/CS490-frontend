@@ -7,7 +7,8 @@
         <h1 id="helloworld"></h1>
     </body>
     <script>
-        let server_url = "http://localhost:3500/healthcheck"
+        //let server_url = "http://localhost:3500/"
+        let server_url="https://pacific-wildwood-87006-8618f785dcee.herokuapp.com/"
 
         async function fetch_string(server_url)
         {
@@ -24,6 +25,6 @@
             document.getElementById("helloworld").innerHTML = fetched_string;
         }
 
-        fetch_string(server_url);
+        fetch_string(server_url + "healthcheck/");
     </script>
 </html>
