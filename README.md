@@ -1,7 +1,7 @@
 # CS490-frontend
 ## A front end for the CS 490 project
 
-This branch will be deployed to heroku and use the server being hosted on heroku.
+This branch will be deployed to heroku and use the server being hosted on heroku. Main on the other hand will make its calls to the server hosted locally on port 3500
 
 If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
 
