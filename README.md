@@ -1,7 +1,10 @@
 # CS490-frontend
 ## A front end for the CS 490 project
 
-If the server is functioning normally, the empty h1 element in index.html should be replaced with "Hello world" (a string retrieved from the server through the fetch api).
+By default, this branch deploys to heroku. To use the backend hosted locally, all links to the heroku server should be switched to localhost. The best solution I could come up with to automate this was a bash script. To do this automatically and use the server hosted on port 3500, run the following script.
+```bash
+./switch_to_local.sh 
+```
 
 If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
 
