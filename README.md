@@ -1,7 +1,7 @@
 # CS490-frontend
 ## A front end for the CS 490 project
 
-By default, this branch deploys to heroku. To use the backend hosted locally, all links to the heroku server should be switched to localhost. The best solution I could come up with to automate this was a bash script. To do this automatically and use the server hosted on port 3500, run the following script.
+By default, this branch uses the backend server hosted on heroku. To use the backend hosted locally, all links to the heroku server should be switched to localhost. The best solution I could come up with to automate this was a bash script. To do this automatically and use the server hosted on port 3500, run the following script.
 ```bash
 ./switch_to_local.sh 
 ```
