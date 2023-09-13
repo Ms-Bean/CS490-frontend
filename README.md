@@ -13,4 +13,4 @@ After this is done, if the server is being hosted locally on port 3500, the empt
 
 If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
 
-Note: it may take about 10 seconds for heroku's dynos to wake up and display content if the page has not been accessed for a while.
+Note: it may take about 10 seconds for heroku's eco dynos to wake up and display content if the page has not been accessed for a while.
