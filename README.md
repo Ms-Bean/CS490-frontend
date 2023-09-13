@@ -3,7 +3,8 @@
 
 By default, this branch uses the backend server hosted on heroku. This should still work, as I have the backend server deployed to heroku right now.
 
-To use the backend hosted locally, all links to the heroku server should be switched to localhost. The best solution I could come up with to automate this was a bash script. To do this automatically and use the server hosted on port 3500, run the following script.
+However, if you want to use the locally hosted server on port 3500, this bash script will replace all the URL's of the server deployed to heroku with localhost.
+
 ```bash
 chmod 777 switch_to_local.sh
 ./switch_to_local.sh 
