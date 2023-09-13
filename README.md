@@ -3,8 +3,11 @@
 
 By default, this branch uses the backend server hosted on heroku. To use the backend hosted locally, all links to the heroku server should be switched to localhost. The best solution I could come up with to automate this was a bash script. To do this automatically and use the server hosted on port 3500, run the following script.
 ```bash
+chmod 777 switch_to_local.sh
 ./switch_to_local.sh 
 ```
+After this is done, if the server is being hosted locally on port 3500, the empty html element in index.html should change to "Hello world"
+
 
 If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
 
