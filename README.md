@@ -1,9 +1,9 @@
 # CS490-frontend
 ## A front end for the CS 490 project
 
-By default, this branch uses the backend server hosted on heroku. This should still work, as I have the backend server deployed to heroku right now.
+By default, this frontend uses the backend hosted on heroku. This should still work, as I have the backend server deployed to heroku right now.
 
-However, if you want to use the locally hosted server on port 3500, this bash script will replace all the URL's of the server deployed to heroku with localhost.
+However, if you want to use the backend locally hosted server on port 3500, this bash script will replace all the heroku URLs with localhost.
 
 ```bash
 chmod 777 switch_to_local.sh
