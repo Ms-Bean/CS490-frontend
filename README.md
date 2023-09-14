@@ -9,8 +9,6 @@ However, if you want to use the locally hosted server on port 3500, this bash sc
 chmod 777 switch_to_local.sh
 ./switch_to_local.sh 
 ```
-After this is done, if the server is being hosted locally on port 3500, the empty html element in index.html should change to "Hello world"
-
 
 If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
 
