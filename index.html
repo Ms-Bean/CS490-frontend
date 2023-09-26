@@ -1,57 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            .content_box_success {
-                width:50%;
-                border-left-style: solid;
-                border-left-color: rgb(16, 126, 27);
-                border-left-width:10px;
-                background-color: rgb(192, 255, 213);
-                padding-top: 20px;
-                padding-bottom: 20px;
-                padding-left: 30px;
-            }
-            .content_box_failure {
-                width:50%;
-                border-left-style: solid;
-                border-left-color: rgb(88, 2, 2);
-                border-left-width:10px;
-                background-color: rgb(255, 155, 155);
-                padding-top: 20px;
-                padding-bottom: 20px;
-                padding-left: 30px;
-
-            }
-        </style>
         <title>Main page</title>
+        <link rel="stylesheet" href="common.css">
     </head>
     <body>
-        <div class="content_box_failure" id="content_box">
-            <h1 id="helloworld"></h1>
+        <h1>Home page</h1>
+        <a href="customers.html">Customers page</a>
+        <a href="movies.html">Movies page</a>
+        <div class="divider">
+            <h1 id="message_box"></h1>
+            <h2>Top five movies (click on any of them to view info)</h2>
+            <table id="result_table" class="data_table"></table>
+            <br><br><h2>Movie info</h2>
+            <table id="film_info_table" class="data_table"></table>
         </div>
     </body>
+    <script src="common.js"></script>
     <script>
-        let server_url="https://cs490-backend-497bd942e154.herokuapp.com/"
 
-        async function fetch_string(server_url)
-        {
-            let response = await fetch(server_url,{
-                method: "GET",
-                mode: "cors"
-            }).catch(error=>{
-                document.getElementById("helloworld").innerHTML = "an error has occured";
-                return;
-            });
-            let data = await response.text().catch(error =>{
-                document.getElementById("helloworld").innerHTML = "an error has occured";
-                return;
-            });
-            fetched_string = JSON.parse(data).value;
-            document.getElementById("helloworld").innerHTML = fetched_string;
-            document.getElementById("content_box").className = "content_box_success"
-        }
-
-        fetch_string(server_url + "healthcheck/");
+        propagate_table_with_top_5_movies("message_box", "result_table", "film_info_table", "message_box");
     </script>
 </html>

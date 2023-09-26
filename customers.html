@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customers page</title>
+        <link rel="stylesheet" href="common.css">
+    </head>
+    <body>
+        <h1>Customers page</h1>
+        <a href="index.html">Home</a>
+        <h1 id="message_box" class="content_box_failure"></h1>
+        <div class="divider">
+            <h2>Add a customer</h2>
+            <label for="add_customer_store_id">Store ID:</label><br>
+            <input type="text" id="add_customer_store_id" name="add_customer_store_id"><br>
+            <label for="add_customer_first_name">Customer first name:</label><br>
+            <input type="text" id="add_customer_first_name" name="add_customer_first_name"><br>
+            <label for="add_customer_last_name">Customer last name:</label><br>
+            <input type="text" id="add_customer_last_name" name="add_customer_last_name"><br>
+            <label for="add_customer_email">Customer email:</label><br>
+            <input type="text" id="add_customer_email" name="add_customer_email"><br>
+            <label for="add_customer_address_id">Address ID:</label><br>
+            <input type="text" id="add_customer_address_id" name="add_customer_address_id"><br>
+            <button onclick="add_customer()">Submit</button>
+        </div>
+        <div class="divider">
+            <h2>Update customer information</h2>
+            <label for="update_customer_id_id">ID of customer whose information is to be updated:</label><br>
+            <input type="text" id="update_customer_id_id" name="update_customer_id_id"><br>
+            <label for="update_customer_store_id">Store ID:</label><br>
+            <input type="text" id="update_customer_store_id" name="update_customer_store_id"><br>
+            <label for="update_customer_first_name">Customer first name:</label><br>
+            <input type="text" id="update_customer_first_name" name="update_customer_first_name"><br>
+            <label for="update_customer_last_name">Customer last name:</label><br>
+            <input type="text" id="update_customer_last_name" name="update_customer_last_name"><br>
+            <label for="update_customer_email">Customer email:</label><br>
+            <input type="text" id="update_customer_email" name="update_customer_email"><br>
+            <label for="update_customer_address_id">Address ID:</label><br>
+            <input type="text" id="update_customer_address_id" name="update_customer_address_id"><br>
+            <button onclick="update_customer()">Submit</button>
+        </div>
+        <div class="divider">
+            <h2>Delete customer</h2>
+            <label for="delete_customer_id_id">Customer ID:</label><br>
+            <input type="text" id="delete_customer_id_id" name="delete_customer_id_id"><br>
+            <button onclick="delete_customer()">Submit</button>
+        </div>
+        <div class="divider">
+            <h2>Search for customers</h2>
+            <h3>Filters</h3>
+            <form>
+                <label for="customer_id">Customer ID:</label><br>
+                <input type="text" id="customer_id" name="customer_id"><br>
+                <label for="customer_first_name">Customer first name:</label><br>
+                <input type="text" id="customer_first_name" name="customer_first_name"><br>
+                <label for="customer_last_name">Customer last name:</label><br>
+                <input type="text" id="customer_last_name" name="customer_last_name"><br>
+            </form> 
+            <button onclick="get_customer_list()">Submit</button>
+            <table id="result_table"></table>
+        </div>
+    </body>
+    <script src="common.js"></script>
+    <script>
+        function get_customer_list()
+        {
+            propagate_table_with_customer_list("result_table", "message_box", "customer_id", "customer_first_name", "customer_last_name");
+        }
+        function add_customer()
+        {
+            insert_customer_into_database("message_box", "add_customer_store_id", "add_customer_first_name", "add_customer_last_name", "add_customer_email", "add_customer_address_id");
+        }
+        function update_customer()
+        {
+            update_customer_in_database("message_box", "update_customer_id_id", "update_customer_store_id", "update_customer_first_name", "update_customer_last_name", "update_customer_email", "update_customer_address_id")
+        }
+        function delete_customer()
+        {
+            delete_customer_in_database("message_box", "delete_customer_id_id");
+        }
+    </script>
+</html>

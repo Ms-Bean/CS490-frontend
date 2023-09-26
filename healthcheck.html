@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="common.css">
+        <title>Main page</title>
+    </head>
+    <body>
+        <div class="content_box_failure" id="content_box">
+            <h1 id="helloworld"></h1>
+        </div>
+    </body>
+    <script>
+        let server_url="http://localhost:3500/"
+
+        async function fetch_string(server_url)
+        {
+            let response = await fetch(server_url,{
+                method: "GET",
+                mode: "cors"
+            }).catch(error=>{
+                document.getElementById("helloworld").innerHTML = "an error has occured";
+                return;
+            });
+            let data = await response.text().catch(error =>{
+                document.getElementById("helloworld").innerHTML = "an error has occured";
+                return;
+            });
+            fetched_string = JSON.parse(data).value;
+            document.getElementById("helloworld").innerHTML = fetched_string;
+            document.getElementById("content_box").className = "content_box_success"
+        }
+        fetch_string(server_url + "healthcheck/");
+
+        
+    </script>
+</html>
