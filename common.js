@@ -39,8 +39,101 @@ async function propagate_table_static(data, result_table_id, message_box_id)
     }
     message_box.innerHTML = "";
 }
+async function propagate_table_with_actor_info(actor_id, actor_info_table_id, message_box_id)
+{
+    console.log("Hello");
+    let response = await fetch(server_url + "get_actor_info/",{
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "actor_id": actor_id
+        },
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        propagate_table_static(JSON.parse(data).result_table, actor_info_table_id, message_box_id);
+        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
+    }
+    else
+    {        
+        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
+    }
+    document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
 
-async function propagate_table_with_top_5_movies(message_box_id, result_table_id, film_info_table_id, message_box_id)
+}
+async function propagate_table_with_top_5_actors(message_box_id, top_5_actor_table_id, actor_info_table_id)
+{    
+    const message_box = document.getElementById(message_box_id);
+    const result_table = document.getElementById(top_5_actor_table_id);
+    
+    let response = await fetch(server_url + "get_top_5_actors/",{
+        method: "GET",
+        mode: "cors"
+    })
+    let data = await response.json();
+
+    //Clear out everything currently in the table
+    result_table.innerHTML = "";
+    
+    if(data.result_table.length < 1)
+    {
+        message_box.innerHTML = "No results";
+        return;
+    }
+    //The rest of the function will now assume the first row has data
+
+    const column_names = Object.keys(data.result_table[0]);
+    var table_row = document.createElement("tr");
+    for(var i = 0; i <  column_names.length; i++)
+    {
+        var table_header_entry = document.createElement("th");
+        table_header_entry.setAttribute("class", "table_entry");
+        var text_node = document.createTextNode(column_names[i]);
+        table_header_entry.appendChild(text_node);
+        table_row.appendChild(table_header_entry);
+    }
+    result_table.appendChild(table_row);
+    for(var i = 0; i < data.result_table.length; i++)
+    {
+        var table_row = document.createElement("tr");
+        for(var j = 0; j < column_names.length; j++)
+        {
+            var table_data_entry = document.createElement("td");
+            table_data_entry.setAttribute("class", "table_entry");
+            var text_node = document.createTextNode(data.result_table[i][column_names[j]]);
+            table_data_entry.appendChild(text_node);
+            table_row.appendChild(table_data_entry);
+        }
+        var actor_id = data.result_table[i]['actor_id'];
+        table_row.setAttribute("onclick", "propagate_table_with_actor_info(" + actor_id + ", \"" + actor_info_table_id + "\", \"" + message_box_id + "\")");
+        result_table.appendChild(table_row);
+    }
+    
+}
+async function propagate_table_with_film_data(film_id, film_info_table_id, message_box_id)
+{
+    console.log("Hello")
+    let response = await fetch(server_url + "get_film_info/",{
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "film_id": film_id
+        },
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        propagate_table_static(JSON.parse(data).result_table, film_info_table_id, message_box_id);
+        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
+    }
+    else
+    {        
+        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
+    }
+    document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
+}
+async function propagate_table_with_top_5_movies(message_box_id, result_table_id, film_info_table_id)
 {
     const message_box = document.getElementById(message_box_id);
     const result_table = document.getElementById(result_table_id);
@@ -84,33 +177,10 @@ async function propagate_table_with_top_5_movies(message_box_id, result_table_id
             table_row.appendChild(table_data_entry);
         }
         var film_id = data.result[i]['film_id'];
-        table_row.setAttribute("onclick", "propagate_table_with_film_data(" + film_id + ", \"" + film_info_table_id + "\")"); 
+        table_row.setAttribute("onclick", "propagate_table_with_film_data(" + film_id + ", \"" + film_info_table_id + "\", \"" + message_box_id + "\")"); 
         result_table.appendChild(table_row);
     }
 }
-
-async function propagate_table_with_film_data(film_id, film_info_table_id, message_box_id)
-{
-    let response = await fetch(server_url + "get_film_info/",{
-        method: "GET",
-        mode: "cors",
-        headers: {
-            "film_id": film_id
-        },
-    })
-    let data = await response.json();
-    if(data.failure == 0)
-    {
-        propagate_table_static(data, film_info_table_id, message_box_id);
-        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
-    }
-    else
-    {        
-        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
-    }
-    document.getElementById(message_box_id).innerHTML = data.message;
-}
-
 async function propagate_table_with_film_list(film_name_id, actor_first_name_id, actor_last_name_id, genre_id, film_list_table_id, message_box_id)
 {
     var film_name = document.getElementById(film_name_id).value;  

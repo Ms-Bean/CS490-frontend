@@ -20,15 +20,9 @@
                 <label for="genre">Genre:</label><br>
                 <input type="text" id="genre" name="genre"><br><br>
             </form> 
-            <button onclick="get_film_list()">Submit</button>
+            <button onclick="propagate_table_with_film_list('film_name', 'actor_first_name', 'actor_last_name', 'genre', 'result_table', 'message_box')">Submit</button>
             <table id="result_table"></table>
         </div>
     </body>
     <script src="common.js"></script>
-    <script>
-        function get_film_list()
-        {
-            propagate_table_with_film_list("film_name", "actor_first_name", "actor_last_name", "genre", "result_table", "message_box")
-        }
-    </script>
 </html>

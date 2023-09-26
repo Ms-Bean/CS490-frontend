@@ -11,14 +11,21 @@
         <div class="divider">
             <h1 id="message_box"></h1>
             <h2>Top five movies (click on any of them to view info)</h2>
-            <table id="result_table" class="data_table"></table>
+            <table id="film_list_table" class="data_table"></table>
             <br><br><h2>Movie info</h2>
             <table id="film_info_table" class="data_table"></table>
+        </div>
+        <div class="divider">
+            <h1 id="message_box_2"></h1>
+            <h2>Top five actors</h2>
+            <table id="top_5_actor_table" class="data_table"></table>
+            <br><br><h2>Actor/Film info (click on any of them to view info)</h2>
+            <table id="actor_info_table" class="data_table"></table>
         </div>
     </body>
     <script src="common.js"></script>
     <script>
-
-        propagate_table_with_top_5_movies("message_box", "result_table", "film_info_table", "message_box");
+        propagate_table_with_top_5_movies("message_box", "film_list_table", "film_info_table");
+        propagate_table_with_top_5_actors("message_box_2", "top_5_actor_table", "actor_info_table");
     </script>
 </html>
