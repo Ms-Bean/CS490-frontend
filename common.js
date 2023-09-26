@@ -2,7 +2,6 @@ let server_url="http://localhost:3500/"
 
 async function propagate_table_static(data, result_table_id, message_box_id)
 {
-    console.log(data);
     var result_table = document.getElementById(result_table_id);
     var message_box = document.getElementById(message_box_id);
     //Clear out everything currently in the table
@@ -92,8 +91,6 @@ async function propagate_table_with_top_5_movies(message_box_id, result_table_id
 
 async function propagate_table_with_film_data(film_id, film_info_table_id, message_box_id)
 {
-    var film_info_table = document.getElementById(film_info_table_id);
-
     let response = await fetch(server_url + "get_film_info/",{
         method: "GET",
         mode: "cors",
@@ -102,8 +99,16 @@ async function propagate_table_with_film_data(film_id, film_info_table_id, messa
         },
     })
     let data = await response.json();
-
-    propagate_table_static(data, film_info_table_id, message_box_id);
+    if(data.failure == 0)
+    {
+        propagate_table_static(data, film_info_table_id, message_box_id);
+        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
+    }
+    else
+    {        
+        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
+    }
+    document.getElementById(message_box_id).innerHTML = data.message;
 }
 
 async function propagate_table_with_film_list(film_name_id, actor_first_name_id, actor_last_name_id, genre_id, film_list_table_id, message_box_id)
@@ -123,8 +128,18 @@ async function propagate_table_with_film_list(film_name_id, actor_first_name_id,
             "genre": genre
         },
     })
-    let data = await response.json();
-    propagate_table_static(data, film_list_table_id, message_box_id);
+    let data = await response.text();
+    propagate_table_static(JSON.parse(data).result_table, film_list_table_id, message_box_id);
+    if(JSON.parse(data).failure == 0)
+    {
+        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
+        propagate_table_static(JSON.parse(data).result_table, film_list_table_id, message_box_id);
+    }
+    else
+    {
+        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
+    }
+    document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
 }
 async function propagate_table_with_customer_list(customer_table_id, message_box_id, customer_id_id, customer_first_name_id, customer_last_name_id)
 {
@@ -149,7 +164,6 @@ async function propagate_table_with_customer_list(customer_table_id, message_box
     }
     else
     {
-        console.log("Failure");
         document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
     }
     document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
