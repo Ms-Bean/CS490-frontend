@@ -7,8 +7,8 @@
     <body>
         <h1>Customers page</h1>
         <a href="index.html">Home</a>
-        <h1 id="message_box" class="content_box_failure"></h1>
         <div class="divider">
+            <h1 id="message_box_1" class="content_box_failure"></h1>
             <h2>Add a customer</h2>
             <label for="add_customer_store_id">Store ID:</label><br>
             <input type="text" id="add_customer_store_id" name="add_customer_store_id"><br>
@@ -23,6 +23,7 @@
             <button onclick="add_customer()">Submit</button>
         </div>
         <div class="divider">
+            <h1 id="message_box_2" class="content_box_failure"></h1>
             <h2>Update customer information</h2>
             <label for="update_customer_id_id">ID of customer whose information is to be updated:</label><br>
             <input type="text" id="update_customer_id_id" name="update_customer_id_id"><br>
@@ -39,12 +40,14 @@
             <button onclick="update_customer()">Submit</button>
         </div>
         <div class="divider">
+            <h1 id="message_box_3" class="content_box_failure"></h1>
             <h2>Delete customer</h2>
             <label for="delete_customer_id_id">Customer ID:</label><br>
             <input type="text" id="delete_customer_id_id" name="delete_customer_id_id"><br>
             <button onclick="delete_customer()">Submit</button>
         </div>
         <div class="divider">
+            <h1 id="message_box_4" class="content_box_failure"></h1>
             <h2>Search for customers</h2>
             <h3>Filters</h3>
             <form>
@@ -63,19 +66,19 @@
     <script>
         function get_customer_list()
         {
-            propagate_table_with_customer_list("result_table", "message_box", "customer_id", "customer_first_name", "customer_last_name");
+            propagate_table_with_customer_list("result_table", "message_box_4", "customer_id", "customer_first_name", "customer_last_name");
         }
         function add_customer()
         {
-            insert_customer_into_database("message_box", "add_customer_store_id", "add_customer_first_name", "add_customer_last_name", "add_customer_email", "add_customer_address_id");
+            insert_customer_into_database("message_box_1", "add_customer_store_id", "add_customer_first_name", "add_customer_last_name", "add_customer_email", "add_customer_address_id");
         }
         function update_customer()
         {
-            update_customer_in_database("message_box", "update_customer_id_id", "update_customer_store_id", "update_customer_first_name", "update_customer_last_name", "update_customer_email", "update_customer_address_id")
+            update_customer_in_database("message_box_2", "update_customer_id_id", "update_customer_store_id", "update_customer_first_name", "update_customer_last_name", "update_customer_email", "update_customer_address_id")
         }
         function delete_customer()
         {
-            delete_customer_in_database("message_box", "delete_customer_id_id");
+            delete_customer_in_database("message_box_3", "delete_customer_id_id");
         }
     </script>
 </html>

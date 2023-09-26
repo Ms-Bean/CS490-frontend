@@ -2,18 +2,19 @@ let server_url="http://localhost:3500/"
 
 async function propagate_table_static(data, result_table_id, message_box_id)
 {
+    console.log(data);
     var result_table = document.getElementById(result_table_id);
     var message_box = document.getElementById(message_box_id);
     //Clear out everything currently in the table
     result_table.innerHTML = "";
-    if(data.result.length < 1)
+    if(data.length < 1)
     {
         message_box.innerHTML = "No results";
         return;
     }
     //The rest of the function will now assume the first row has data
 
-    const column_names = Object.keys(data.result[0]);
+    const column_names = Object.keys(data[0]);
     var table_row = document.createElement("tr");
     for(var i = 0; i <  column_names.length; i++)
     {
@@ -24,14 +25,14 @@ async function propagate_table_static(data, result_table_id, message_box_id)
         table_row.appendChild(table_header_entry);
     }
     result_table.appendChild(table_row);
-    for(var i = 0; i < data.result.length; i++)
+    for(var i = 0; i < data.length; i++)
     {
         var table_row = document.createElement("tr");
         for(var j = 0; j < column_names.length; j++)
         {
             var table_data_entry = document.createElement("td");
             table_data_entry.setAttribute("class", "table_entry");
-            var text_node = document.createTextNode(data.result[i][column_names[j]]);
+            var text_node = document.createTextNode(data[i][column_names[j]]);
             table_data_entry.appendChild(text_node);
             table_row.appendChild(table_data_entry);
         }
@@ -140,9 +141,18 @@ async function propagate_table_with_customer_list(customer_table_id, message_box
             "customer_last_name": customer_last_name
         },
     })
-    let data = await response.json();
-
-    propagate_table_static(data, customer_table_id, message_box_id);
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        document.getElementById(message_box_id).setAttribute("class", "content_box_success");
+        propagate_table_static(JSON.parse(data).result_table, customer_table_id, message_box_id);
+    }
+    else
+    {
+        console.log("Failure");
+        document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
+    }
+    document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
 }
 
 async function insert_customer_into_database(message_box_id, add_customer_store_id_id, add_customer_first_name_id, add_customer_last_name_id, add_customer_email_id, add_customer_address_id_id)
