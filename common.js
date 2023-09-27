@@ -142,19 +142,18 @@ async function propagate_table_with_top_5_movies(message_box_id, result_table_id
         method: "GET",
         mode: "cors"
     })
-    let data = await response.json();
+    let data = JSON.parse(await response.text());
 
     //Clear out everything currently in the table
     result_table.innerHTML = "";
     
-    if(data.result.length < 1)
+    if(data.result_table.length < 1)
     {
         message_box.innerHTML = "No results";
         return;
     }
     //The rest of the function will now assume the first row has data
-
-    const column_names = Object.keys(data.result[0]);
+    const column_names = Object.keys(data.result_table[0]);
     var table_row = document.createElement("tr");
     for(var i = 0; i <  column_names.length; i++)
     {
@@ -165,18 +164,18 @@ async function propagate_table_with_top_5_movies(message_box_id, result_table_id
         table_row.appendChild(table_header_entry);
     }
     result_table.appendChild(table_row);
-    for(var i = 0; i < data.result.length; i++)
+    for(var i = 0; i < data.result_table.length; i++)
     {
         var table_row = document.createElement("tr");
         for(var j = 0; j < column_names.length; j++)
         {
             var table_data_entry = document.createElement("td");
             table_data_entry.setAttribute("class", "table_entry");
-            var text_node = document.createTextNode(data.result[i][column_names[j]]);
+            var text_node = document.createTextNode(data.result_table[i][column_names[j]]);
             table_data_entry.appendChild(text_node);
             table_row.appendChild(table_data_entry);
         }
-        var film_id = data.result[i]['film_id'];
+        var film_id = data.result_table[i]['film_id'];
         table_row.setAttribute("onclick", "propagate_table_with_film_data(" + film_id + ", \"" + film_info_table_id + "\", \"" + message_box_id + "\")"); 
         result_table.appendChild(table_row);
     }
@@ -198,18 +197,18 @@ async function propagate_table_with_film_list(film_name_id, actor_first_name_id,
             "genre": genre
         },
     })
-    let data = await response.text();
-    propagate_table_static(JSON.parse(data).result_table, film_list_table_id, message_box_id);
-    if(JSON.parse(data).failure == 0)
+    let data = JSON.parse(await response.text());
+    propagate_table_static(data.result_table, film_list_table_id, message_box_id);
+    if(data.failure == 0)
     {
         document.getElementById(message_box_id).setAttribute("class", "content_box_success");
-        propagate_table_static(JSON.parse(data).result_table, film_list_table_id, message_box_id);
+        propagate_table_static(data.result_table, film_list_table_id, message_box_id);
     }
     else
     {
         document.getElementById(message_box_id).setAttribute("class", "content_box_failure");
     }
-    document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
+    document.getElementById(message_box_id).innerHTML = data.message;
 }
 async function propagate_table_with_customer_list(customer_table_id, message_box_id, customer_id_id, customer_first_name_id, customer_last_name_id)
 {

@@ -1,15 +1,33 @@
 # CS490-frontend
 ## A front end for the CS 490 project
 
-By default, this frontend uses the backend hosted on heroku. This should still work, as I have the backend deployed to heroku right now.
+This is the front-end for the CS 490 individual project.
+The landing page is index.html. The front end basically uses onclick events to call functions in common.js, which goes absolutely bonkers with fetch calls to interact with the backend hosted locally on port 3500.
 
-However, if you want to use the backend locally hosted on port 3500, this bash script will replace all the heroku URLs with localhost.
+Features completed so far (in exact wording):
+Landing Page:
+- [x] As a user I want to view top 5 rented movies of all times.
+- [x] As a user I want to be able to click on any of the top 5 movies and view its details
+- [x] As a user I want to be able to view top 5 actors that are part of movies that I have in the store
+- [x] As a user I want to be able to view the actor’s details and view their top 5 rented movies
+- [ ] As a user I want to be able to rent out a film to a customer
 
-```bash
-chmod 777 switch_to_local.sh
-./switch_to_local.sh 
-```
 
-If the app is currently being hosted (which it most likely is), it can be accessed here. https://cs490-frontend-56d6b4e4d85f.herokuapp.com/index.html
+Movies Page:
+- [x] As a user I want to be able to search a movie by name of film, name of actor, or genre of the film
+- [x] As a user I want to be able to view details of the film
+- [ ] As a user I want to be able to rent out a film to a customer
 
-Note: it may take a few seconds for heroku's eco dynos to wake up and display content if the page has not been accessed for a while.
+
+Customers Page:
+- [x] As a user I want view list of customers. 
+- [x] As a user I want the ability to filter/search customers by their customer id, first name or last name. 
+- [x] As a user I want to be able to add new customers that enter the store
+- [x] As a user I want to be able to edit customers details. 
+- [x] As a user I want to be able to delete a customer if they no longer wish to patron at store.
+- [ ] As a user I want to be able to view customer details and see the movies they have rented out.
+- [ ] As a user I want to be able to indicate that a customer has returned a rented movie.
+- [ ] As a user I want to click this button to generate a PDF report of all my customers who have rented out movies from my store
+
+Also, a video demonstration of the frontend and server working so far can be found here.
+[https://www.youtube.com/watch?v=my3khDmXmPM]
