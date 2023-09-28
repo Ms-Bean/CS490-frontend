@@ -22,9 +22,9 @@ unit_test_info -> json object: Defines the unit test on the function as follows.
         test_cases: [
             [
             「This should be an array of arguments for a test case.
-              In the case of parameter_type 0, it should be the element id of the element to get the data from.
+              In the case of parameter_type 0, it should be the value the user would enter into the input element.
               In the case of parameter_type 1, it should be skipped and not included in the array.
-              In all other cases, it should be raw data to pass into the function」
+              In all other cases, it should be a raw value to pass into the function」
             ]
         ]
 }
