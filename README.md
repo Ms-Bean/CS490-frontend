@@ -10,7 +10,6 @@ Landing Page:
 - [x] As a user I want to be able to click on any of the top 5 movies and view its details
 - [x] As a user I want to be able to view top 5 actors that are part of movies that I have in the store
 - [x] As a user I want to be able to view the actor’s details and view their top 5 rented movies
-- [ ] As a user I want to be able to rent out a film to a customer
 
 
 Movies Page:
@@ -30,4 +29,4 @@ Customers Page:
 - [ ] As a user I want to click this button to generate a PDF report of all my customers who have rented out movies from my store
 
 Also, a video demonstration of the frontend and server working so far can be found here.
-[https://www.youtube.com/watch?v=my3khDmXmPM]
+https://www.youtube.com/watch?v=my3khDmXmPM
