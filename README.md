@@ -29,4 +29,4 @@ Customers Page:
 - [ ] As a user I want to click this button to generate a PDF report of all my customers who have rented out movies from my store
 
 Also, a video demonstration of the frontend and server working so far can be found here.
-[https://www.youtube.com/watch?v=cU1VUX7Igew]
+[https://www.youtube.com/watch?v=AExKr4F5Tt8]
