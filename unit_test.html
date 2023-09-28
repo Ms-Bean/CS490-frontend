@@ -7,7 +7,7 @@
         <h1><u>Unit tests on insert_customer_into_database</u></h1>
         <div id="unit_test_2"></div>
         <br><br><br>
-        <h1><u>Unit tests on show moves</u></h1>
+        <h1><u>Unit tests on propagate_table_with_actor_info</u></h1>
         <div id="unit_test_3"></div>
         <br><br><br>
     </body>
@@ -34,7 +34,8 @@
                 ["AFFAIR","","","",""],
                 ["NA","","DAVIS","",""],
                 ["NA","JOHNNY","","",""],
-                ["", "JOHNNY","","COMEDY",""]
+                ["", "JOHNNY","","COMEDY",""],
+                ["", "JOHNNY","","Animation",""]
 
             ]
         };
@@ -72,7 +73,13 @@
             "test_cases": [
                     ["34"],
                     ["43"],
-                    ["45"]
+                    ["45"],
+                    ["3"],
+                    ["23"],
+                    ["66"],
+                    ["10"],
+                    ["33"],
+                    ["43"]
             ]
         }
         perform_unit_test(propagate_table_with_film_list, "unit_test_1", unit_test_propagate_table_with_film_list);

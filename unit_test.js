@@ -47,7 +47,7 @@ unit_test_info -> json object: Defines the unit test on the function as follows.
         /*Create a labels for the test case*/
         let testcase_title = document.createElement("h2");
         let testcase_title_text_node = document.createTextNode("======Test case " + (i + 1) + "========");
-        testcase_title.appendChild(testcase_title_text_node);
+        testcase_title.appendChild(testcase_title_text_node);  
         container_element.appendChild(testcase_title);
 
         /*Create a label for the simulated inputs*/
@@ -98,7 +98,9 @@ unit_test_info -> json object: Defines the unit test on the function as follows.
             container_element.appendChild(output_elements[k]);
         }
         /* SHABANG!! */
-        console.log(actual_arguments_to_pass);
         function_to_test.apply(null, actual_arguments_to_pass);
+
+
+        /*Gather the results*/
     }
 }
