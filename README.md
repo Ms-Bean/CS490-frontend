@@ -15,7 +15,7 @@ Landing Page:
 Movies Page:
 - [x] As a user I want to be able to search a movie by name of film, name of actor, or genre of the film
 - [x] As a user I want to be able to view details of the film
-- [ ] As a user I want to be able to rent out a film to a customer
+- [x] As a user I want to be able to rent out a film to a customer
 
 
 Customers Page:
@@ -24,9 +24,11 @@ Customers Page:
 - [x] As a user I want to be able to add new customers that enter the store
 - [x] As a user I want to be able to edit customers details. 
 - [x] As a user I want to be able to delete a customer if they no longer wish to patron at store.
-- [ ] As a user I want to be able to view customer details and see the movies they have rented out.
-- [ ] As a user I want to be able to indicate that a customer has returned a rented movie.
-- [ ] As a user I want to click this button to generate a PDF report of all my customers who have rented out movies from my store
+- [x] As a user I want to be able to view customer details and see the movies they have rented out.
+- [x] As a user I want to be able to indicate that a customer has returned a rented movie.
+- [x] As a user I want to click this button to generate a PDF report of all my customers who have rented out movies from my store
+
+Build instructions can be found in the readme in the backend repository.
 
 Also, a video demonstration of the frontend and server working so far can be found here.
 [https://www.youtube.com/watch?v=AExKr4F5Tt8]

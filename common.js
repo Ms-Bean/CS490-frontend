@@ -1,4 +1,4 @@
-let server_url="http://localhost:3500/"
+let server_url="http://localhost:3500/" //Replace with your server url. (With the slash at the end, it is important)
 
 async function propagate_table_static(data, result_table_id, message_box_id)
 {
