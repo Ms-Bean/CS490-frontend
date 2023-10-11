@@ -404,19 +404,27 @@ async function get_pdf_report(message_box_id)
 {
     var message_box = document.getElementById(message_box_id);
 
-    let response = await fetch(server_url + "get_pdf_report/",{
-        method: "POST",
-        mode: "cors"
-    })
-    let data = await response.text();
-    if(JSON.parse(data).failure == 0)
+    try
     {
-        message_box.setAttribute("class", "content_box_success");
-        message_box.innerHTML = "Report now available <a href=" + server_url + "rental_report.pdf> here </a>";
-    }
-    else
+        let response = await fetch(server_url + "get_pdf_report/",{
+            method: "POST",
+            mode: "cors"
+        })
+        let data = await response.text();
+            if(JSON.parse(data).failure == 0)
+            {
+                message_box.setAttribute("class", "content_box_success");
+                message_box.innerHTML = "Report now available <a href=" + server_url + "rental_report.pdf> here </a>";
+            }
+            else
+            {
+                message_box.setAttribute("class", "content_box_failure");
+                message_box.innerHTML = "Something went wrong";
+            }
+    } catch(err)
     {
         message_box.setAttribute("class", "content_box_failure");
+        message_box.innerHTML = "Something went wrong";
     }
 }
 
