@@ -324,3 +324,99 @@ async function delete_customer_in_database(message_box_id, delete_customer_id_id
     }
     document.getElementById(message_box_id).innerHTML = JSON.parse(data).message;
 }
+async function rent_out_movie(film_id_id, customer_id_id, store_id_id, staff_id_id, message_box_id)
+{
+    var customer_id = document.getElementById(customer_id_id).value;
+    var store_id = document.getElementById(store_id_id).value;
+    var film_id = document.getElementById(film_id_id).value;
+    var staff_id = document.getElementById(staff_id_id).value;
+    var message_box = document.getElementById(message_box_id);
+    let response = await fetch(server_url + "rent_out_movie/",{
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "customer_id": customer_id,
+            'film_id': film_id,
+            'store_id': store_id,
+            'staff_id': staff_id
+        },
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        message_box.setAttribute("class", "content_box_success");
+    }
+    else
+    {
+        message_box.setAttribute("class", "content_box_failure");
+    }
+    message_box.innerHTML = JSON.parse(data).message;
+}
+async function propagate_table_with_rental_information(result_table_id, message_box_id, customer_id_id)
+{
+    var customer_id = document.getElementById(customer_id_id).value;
+    var message_box = document.getElementById(message_box_id);
+    let response = await fetch(server_url + "get_customer_rentals/",{
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "customer_id": customer_id
+        },
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        message_box.setAttribute("class", "content_box_success");
+        propagate_table_static(JSON.parse(data).result_table, result_table_id, message_box_id);
+    }
+    else
+    {
+        message_box.setAttribute("class", "content_box_failure");
+    }
+    message_box.innerHTML = JSON.parse(data).message;
+}
+async function return_film(message_box_id, customer_id_id, rental_id_id)
+{
+    var customer_id = document.getElementById(customer_id_id).value;
+    var rental_id = document.getElementById(rental_id_id).value;
+    var message_box = document.getElementById(message_box_id);
+
+    let response = await fetch(server_url + "return_film/",{
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "customer_id": customer_id,
+            "rental_id": rental_id
+        },
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        message_box.setAttribute("class", "content_box_success");
+    }
+    else
+    {
+        message_box.setAttribute("class", "content_box_failure");
+    }
+    message_box.innerHTML = JSON.parse(data).message;
+}
+async function get_pdf_report(message_box_id)
+{
+    var message_box = document.getElementById(message_box_id);
+
+    let response = await fetch(server_url + "get_pdf_report/",{
+        method: "GET",
+        mode: "cors",
+    })
+    let data = await response.text();
+    if(JSON.parse(data).failure == 0)
+    {
+        message_box.setAttribute("class", "content_box_success");
+    }
+    else
+    {
+        message_box.setAttribute("class", "content_box_failure");
+    }
+    message_box.innerHTML = JSON.parse(data).message;
+}
+
