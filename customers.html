@@ -48,6 +48,31 @@
             <label for="delete_customer_id_id">Customer ID:</label><br>
             <input type="text" id="delete_customer_id_id" name="delete_customer_id_id"><br>
             <button onclick="delete_customer_in_database('message_box_3', 'delete_customer_id_id')">Submit</button>
+        </div>        
+        <div class="divider">
+            <h1 id="message_box_8" class="content_box_failure"></h1>
+            <h2>Mark rental as returned</h2>
+            <label for="delete_customer_id_id">Customer ID:</label><br>
+            <input type="text" id="return_customer_id_id" name="return_customer_id_id"><br>
+            <label for="delete_customer_id_id">Rental ID:</label><br>
+            <input type="text" id="return_rental_id_id" name="return_rental_id_id"><br>
+            <button onclick="return_film('message_box_8', 'return_customer_id_id', 'return_rental_id_id')">Submit</button>
+        </div>
+        <div class="divider">
+            <h1 id="message_box_6" class="content_box_failure"></h1>
+            <h2>Get PDF report of all customers who have rented movies</h2>
+            <button onclick="get_pdf_report('message_box_6')">Submit</button>
+        </div>        
+        <div class="divider">
+            <h1 id="message_box_5" class="content_box_failure"></h1>
+            <h2>Search for customer rentals</h2>
+            <h3>Filters</h3>
+            <form>
+                <label for="rentals_customer_id">Customer ID:</label><br>
+                <input type="text" id="rentals_customer_id" name="rentals_customer_id"><br>
+            </form> 
+            <button onclick="propagate_table_with_rental_information('result_table_2', 'message_box_5', 'rentals_customer_id')">Submit</button>
+            <table id="result_table_2"></table>
         </div>
         <div class="divider">
             <h1 id="message_box_4" class="content_box_failure"></h1>
